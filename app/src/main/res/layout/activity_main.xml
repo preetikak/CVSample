@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/error_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/error"
+            android:textColor="@color/dark_blue"
+            android:padding="@dimen/padding5"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_normal"
+            android:visibility="gone"/>
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_xlarge"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/padding10"
+        android:padding="@dimen/padding5"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/summary"
+        android:textColor="@color/dark_blue"
+        android:padding="@dimen/padding5"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_normal"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/summary_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding5"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_small"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/skills"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/skills"
+        android:textColor="@color/dark_blue"
+        android:padding="@dimen/padding5"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_normal"
+        android:visibility="gone"/>
+
+
+    <LinearLayout
+        android:id="@+id/skill_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding5"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/educational_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edu_bg"
+        android:textColor="@color/dark_blue"
+        android:padding="@dimen/padding5"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_normal"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/education_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding5"
+        android:visibility="gone"/>
+    </LinearLayout>
+</ScrollView>
