@@ -102,13 +102,13 @@ class MainActivity : AppCompatActivity() {
                     result= msg+""
                     Log.e("data", result)
                     val data= Gson().fromJson(result, Data::class.java)
-                    tv_username.text= HtmlCompat.fromHtml("<u><b>"+data.data.name+"</b></u>", 0)
-                    tv_summary_desc.text= data.data.summary
-                    tv_username.visibility= View.VISIBLE
-                    tv_summary.visibility= View.VISIBLE
-                    tv_summary_desc.visibility= View.VISIBLE
-                    tv_educational_bg.visibility= View.VISIBLE
-                    tv_skills.visibility= View.VISIBLE
+                    tvUsername.text= HtmlCompat.fromHtml("<u><b>"+data.data.name+"</b></u>", 0)
+                    tvSummaryDesc.text= data.data.summary
+                    tvUsername.visibility= View.VISIBLE
+                    tvSummary.visibility= View.VISIBLE
+                    tvSummaryDesc.visibility= View.VISIBLE
+                    tvEducationalBg.visibility= View.VISIBLE
+                    tvSkills.visibility= View.VISIBLE
                     for (i in 0..data.data.skills.size-1) {
                         val tv_skill = TextView(this@MainActivity)
                         tv_skill.textSize =
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                         val languageData=  list.joinToString (prefix = "", separator = ",", limit = 5, postfix = "")
                         val datatext = "<b>"+data.data.skills.get(i).type+ ": </b> "+languageData.removePrefix("[").removeSuffix("]")
                         tv_skill.text = HtmlCompat.fromHtml(datatext,0)
-                        lv_skills.addView(tv_skill)
+                        lvSkills.addView(tv_skill)
                     }
                     for(i in 0..data.data.educationBg.size-1){
                         val tv_skill = TextView(this@MainActivity)
@@ -139,10 +139,10 @@ class MainActivity : AppCompatActivity() {
                                 "<br><b>Institute Name:</b> "+
                                 data.data.educationBg.get(i).instituteName
                         tv_skill.text=HtmlCompat.fromHtml(skillset,0)
-                        lv_education.addView(tv_skill)
+                        lvEducation.addView(tv_skill)
                     }
-                    lv_education.visibility=View.VISIBLE
-                    lv_skills.visibility= View.VISIBLE
+                    lvEducation.visibility=View.VISIBLE
+                    lvSkills.visibility= View.VISIBLE
                 } else {
                     Log.e("data", "error")
                 }
@@ -150,14 +150,14 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<GithubResp>, t: Throwable) {
                 Log.e("data", "Fail to call")
-                tv_username.visibility= View.GONE
-                tv_summary.visibility= View.GONE
-                tv_summary_desc.visibility= View.GONE
-                tv_skills.visibility= View.GONE
-                tv_educational_bg.visibility= View.GONE
-                lv_education.visibility=View.GONE
-                lv_skills.visibility= View.GONE
-                tv_errormsg.visibility= View.VISIBLE
+                tvUsername.visibility= View.GONE
+                tvSummary.visibility= View.GONE
+                tvSummaryDesc.visibility= View.GONE
+                tvSkills.visibility= View.GONE
+                tvEducationalBg.visibility= View.GONE
+                lvEducation.visibility=View.GONE
+                lvSkills.visibility= View.GONE
+                tvErrorMsg.visibility= View.VISIBLE
             }
 
         })
