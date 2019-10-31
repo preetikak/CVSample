@@ -35,9 +35,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mGitHubApiCall = GitHubCVService.gitHubService
         checkPermission()
-        getData()
-        
+
+        Thread(Runnable {
+            this@MainActivity.runOnUiThread(Runnable {
+                getData()
+            })
+        }).start()
+
     }
+
+
 
     fun checkPermission(){
         if (ContextCompat.checkSelfPermission(this,
@@ -95,13 +102,13 @@ class MainActivity : AppCompatActivity() {
                     result= msg+""
                     Log.e("data", result)
                     val data= Gson().fromJson(result, Data::class.java)
-                    user_name.text= HtmlCompat.fromHtml("<u><b>"+data.data.name+"</b></u>", 0)
-                    summary_desc.text= data.data.summary
-                    user_name.visibility= View.VISIBLE
-                    summary.visibility= View.VISIBLE
-                    summary_desc.visibility= View.VISIBLE
-                    educational_bg.visibility= View.VISIBLE
-                    skills.visibility= View.VISIBLE
+                    tv_username.text= HtmlCompat.fromHtml("<u><b>"+data.data.name+"</b></u>", 0)
+                    tv_summary_desc.text= data.data.summary
+                    tv_username.visibility= View.VISIBLE
+                    tv_summary.visibility= View.VISIBLE
+                    tv_summary_desc.visibility= View.VISIBLE
+                    tv_educational_bg.visibility= View.VISIBLE
+                    tv_skills.visibility= View.VISIBLE
                     for (i in 0..data.data.skills.size-1) {
                         val tv_skill = TextView(this@MainActivity)
                         tv_skill.textSize =
@@ -113,7 +120,7 @@ class MainActivity : AppCompatActivity() {
                         val languageData=  list.joinToString (prefix = "", separator = ",", limit = 5, postfix = "")
                         val datatext = "<b>"+data.data.skills.get(i).type+ ": </b> "+languageData.removePrefix("[").removeSuffix("]")
                         tv_skill.text = HtmlCompat.fromHtml(datatext,0)
-                        skill_layout.addView(tv_skill)
+                        lv_skills.addView(tv_skill)
                     }
                     for(i in 0..data.data.educationBg.size-1){
                         val tv_skill = TextView(this@MainActivity)
@@ -132,10 +139,10 @@ class MainActivity : AppCompatActivity() {
                                 "<br><b>Institute Name:</b> "+
                                 data.data.educationBg.get(i).instituteName
                         tv_skill.text=HtmlCompat.fromHtml(skillset,0)
-                        education_layout.addView(tv_skill)
+                        lv_education.addView(tv_skill)
                     }
-                    education_layout.visibility=View.VISIBLE
-                    skill_layout.visibility= View.VISIBLE
+                    lv_education.visibility=View.VISIBLE
+                    lv_skills.visibility= View.VISIBLE
                 } else {
                     Log.e("data", "error")
                 }
@@ -143,14 +150,14 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<GithubResp>, t: Throwable) {
                 Log.e("data", "Fail to call")
-                user_name.visibility= View.GONE
-                summary.visibility= View.GONE
-                summary_desc.visibility= View.GONE
-                skills.visibility= View.GONE
-                educational_bg.visibility= View.GONE
-                education_layout.visibility=View.GONE
-                skill_layout.visibility= View.GONE
-                error_msg.visibility= View.VISIBLE
+                tv_username.visibility= View.GONE
+                tv_summary.visibility= View.GONE
+                tv_summary_desc.visibility= View.GONE
+                tv_skills.visibility= View.GONE
+                tv_educational_bg.visibility= View.GONE
+                lv_education.visibility=View.GONE
+                lv_skills.visibility= View.GONE
+                tv_errormsg.visibility= View.VISIBLE
             }
 
         })
